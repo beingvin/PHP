@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Orelega+One&family=Rubik:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url("https://www.mystudyindia.com/storage/colleges/banners/yzd85P_1623652717.webp");
+    background-size: cover;
+}
+.container {
+    max-width: 80%; 
+    margin: auto;
+    padding: 35px;
+}
+
+.container h3, h1, p {
+    text-align: center;
+    font-family: 'Orelega One', cursive;
+}
+
+.container p {
+    font-size: 15px;
+    font-family:  sans-serif;
+    margin-top: 20px;
+}
+
+input, textarea {
+    width: 70%;
+    margin-left: 150px;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+    font-size: 20px;
+    font-family:  sans-serif;
+    opacity: 0.9;
+    
+}
+
+input {
+    height: 35px;
+}
+
+button {
+    margin-left: 47%;
+    margin-top: 10px;
+    width: 70px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    color: blue;
+    font-size: 15px;
+}
+
+.flag {
+    color:darkcyan;
+}
