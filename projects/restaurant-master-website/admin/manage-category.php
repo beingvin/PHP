@@ -36,6 +36,7 @@
             <tr>
                 <th>Sl.No</th>
                 <th class="suc">Title</th>
+                <th >Image Name</th>
                 <th>Featured</th>
                 <th>Active</th>
                 <th>Actions</th>
@@ -63,6 +64,7 @@
                         //Get indevidual data 
                         $id = $row['id'];
                         $title = $row['title'];
+                        $image_name = $row['image_name'];
                         $featured = $row['featured'];
                         $active = $row['active'];
 
@@ -72,6 +74,9 @@
                         <tr>
                             <td> <?php echo $sn++; ?> </td>
                             <td> <?php echo $title; ?> </td>
+                            <td> 
+                                <img src="  <?php echo SITE_URL;?>images/category/<?php echo $image_name;?> "    width='80px' height="50px"  >   
+                             </td>
                             <td> <?php echo $featured; ?> </td>
                             <td> <?php echo $active; ?> </td>
 

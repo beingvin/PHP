@@ -12,6 +12,10 @@
         if (isset($_SESSION['add-category'])) {
             echo $_SESSION['add-category']; //Displaying Session Message
             unset($_SESSION['add-category']); // removing Session Message
+        }
+        elseif (isset($_SESSION['upload'])) {
+            echo $_SESSION['upload']; //Displaying Session Message
+            unset($_SESSION['upload']); // removing Session Message
         } 
 
         ?>
@@ -34,8 +38,8 @@
                 </tr>
 
                 <tr>
-                    <td>Image :</td>
-                    <td> <input type="text" name="image"> </td>
+                    <td>Select Image :</td>
+                    <td> <input type="file" name="image"> </td>
 
                 </tr>
 
@@ -87,18 +91,75 @@ if (isset($_POST['submit'])) {
     //1.Get the data from the form 
 
     $title = $_POST['title'];
-    $featured = $_POST['featured'];
-    $active = $_POST['active'];
+
+    //Check if featured redio button is selected ot not 
+    if(isset($_POST['featured'])){
+        //Get the value from form
+        $featured = $_POST['featured'];
+    }   
+    else {
+        //Set defualt value as "No"
+        $featured = 'No';
+    }
+
+     //Check if active redio button is selected ot not 
+     if(isset($_POST['active'])){
+        //Get the value from form
+        $active = $_POST['active'];
+    }
+    else {
+        //Set defualt value as "No"
+        $active  = 'No';
+    }
+
+    //Check if image is selected or no and set the value for image name
+    
+    // print_r($_FILES['image']);
+
+    // die(); // break the code here
+
+    if(isset($_FILES['image']['name'])){
+        // Get image file name
+        $image_name = $_FILES['image']['name'];
+        //Get image file path
+
+        //Get the extention of the image (.jpg, .gif, .pnp, etc) to autorename image file name
+        $ext = end(explode('.',$image_name));
+
+        //rename image file name 
+        $image_name ="Food_Category_".rand(000, 999).'.'.$ext; //e.g Food_category_544.jpg
+
+
+
+        $source_path = $_FILES['image']['tmp_name'];
+        //Set the destiation path 
+        $destination_path = "../images/category/".$image_name;
+        //upload the image
+        $upload = move_uploaded_file($source_path, $destination_path);
+        
+        if ($upload == FALSE){
+            //Create a Session Variable to Display Message
+            $_SESSION['upload'] = "<div class='error'> Failed to Upload Image </div>";
+            //Redirect Page to Manage Admin 
+            header("location:" . SITE_URL . 'admin/add-category.php');
+            die(); // break the code here
+        }
+    }
+    else {
+        //if image not upoaded set image name as blank
+        $image_name = '';
+    }
+
+
 
     //2.SQL query to save data into Database
 
     $sql = "INSERT INTO tbl_category SET 
             title='$title',
+            image_name ='$image_name',
             featured='$featured',
             active='$active'
             ";
-
-    // echo $sql;
 
     //3.Execute Query and save Data into Databse
 

@@ -2,7 +2,7 @@
     session_start();
     //Create Constant to store Non Repeating Values
 
-    define('SITE_URL', 'http://localhost/projects/web-design-course-restaurant-master/');
+    define('SITE_URL', 'http://localhost/projects/restaurant-master-website/');
     define('LOCAL_HOST','localhost');
     define('DB_USERNAME','root');
     define('DB_PASSWORD', '');
