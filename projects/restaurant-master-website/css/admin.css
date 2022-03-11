@@ -78,12 +78,12 @@
 
 table tr th {
     border-bottom: 1px solid gray;
-    padding: 1%;
-    text-align: left;
+    padding: 1%; 
+    text-align: left;   
 }
 
 table tr td {
-    padding: 1%;
+    padding: 1%; 
 }
 
 

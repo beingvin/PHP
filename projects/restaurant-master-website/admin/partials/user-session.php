@@ -8,5 +8,5 @@
         //Redirect Page to login page
         header("location:" . SITE_URL . 'admin/login.php');
     }
-
+    
 ?>

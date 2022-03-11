@@ -10,7 +10,7 @@
     //Create a Session Variable to Display Message
     $_SESSION['logout'] = "<div class='success'> Logged out successfully </div>";
                 
-    //Redirect Page to Manage Admin with error
+    //Redirect to login page with error
     header("location:" . SITE_URL . 'admin/login.php');
 
 ?>

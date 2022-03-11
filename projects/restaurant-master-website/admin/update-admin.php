@@ -10,16 +10,17 @@
 
         <br>
 
+        <!-- Get data from the database -->
+
         <?php
 
+        //1.Get the ID of the admin to be updated
         $id = $_GET['id'];
 
-        //2.Create query to delete admin 
-
+        //2.Create query to update admin 
         $sql = "SELECT * FROM tbl_admin WHERE id=$id";
 
         //3.Execute the query
-
         $res = mysqli_query($conn, $sql);
 
         //4.Check wether the data is inserted or not and disply appropriate message
@@ -29,19 +30,23 @@
             $count = mysqli_num_rows($res);
 
             if ($count == 1) {
+
                 // echo "admin available";
 
                 $row = mysqli_fetch_assoc($res);
 
+                //Get indevidual data 
                 $full_name = $row['full_name'];
                 $username = $row['username'];
-
             }
         }
 
         ?>
 
-        <!-- manage oders table -->
+        <!-- Get data from the database ends  -->
+
+
+        <!-- update admin table -->
         <form action="" method="POST">
 
             <table class="tbl-50">
@@ -71,7 +76,6 @@
 
         </form>
 
-
     </div>
 
 </div>
@@ -79,48 +83,51 @@
 <!-- Main content section ends  -->
 
 
+<!-- Footer section starts  -->
+
 <?php include('partials/footer.php'); ?>
 
+<!-- Footer section ends  -->
 
 <?php
 
+//Process the value from form and save it in to Databse
+
+// Check wether submit button is clicked or not
 if (isset($_POST['submit'])) {
 
-    //Get all the values from form
+    //1.Get the data from the form 
     $id = $_POST['id'];
-    $full_name = $_POST['full_name'];
-    $username = $_POST['username'];
+    $full_name = mysqli_real_escape_string($conn, $_POST['full_name']);
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
 
-    //Create a sql query to update admin
+    //2.Create a sql query to update admin
     $sql = "UPDATE tbl_admin SET 
             full_name = '$full_name',
             username = '$username'
             WHERE id = '$id'
             ";
 
-    // Execute the query 
-
+    //3.Execute Query and save Data into Databse
     $res = mysqli_query($conn, $sql);
 
     //Check wether the data is inserted or not and disply appropriate message
     if ($res == TRUE) {
 
         //Create a Session Variable to Display Message
-        $_SESSION['update'] = "<div class='success'> Admin Updated Successfully </div>";
+        $_SESSION['update-admin,'] = "<div class='success'> Admin Updated Successfully </div>";
+
         //Redirect Page to Manage Admin 
         header("location:" . SITE_URL . 'admin/manage-admin.php');
     } else {
 
         //Create a Session Variable to Display Message
-        $_SESSION['update'] = "<div class='error'> Failed to update Admin </div>";
+        $_SESSION['update-admin'] = "<div class='error'> Failed to update Admin </div>";
+
         //Redirect Page to Manage Admin 
-        header("location:" . SITE_URL . 'admin/add-admin.php');
+        header("location:" . SITE_URL . 'admin/manage-admin.php');
     }
 }
-
-
-
-
 
 
 ?>

@@ -3,11 +3,9 @@ include('../config/constants.php');
 
 
 //1.Get the ID of the admin to be deleted 
-
 $id = $_GET['id'];
 
 //2.Create query to delete admin 
-
 $sql = "DELETE FROM tbl_admin WHERE id=$id";
 
 //3.Execute the query
@@ -24,7 +22,7 @@ if ($res == TRUE) {
     // echo 'Admin deleted successfully';
 
     //Create a Session Variable to Display Message
-    $_SESSION['delete'] = "<div class='success' > Admin deleted successfully </div>";
+    $_SESSION['delete-admin'] = "<div class='success' > Admin deleted successfully </div>";
     //Redirect Page to Manage Admin 
     header("location:" . SITE_URL .'admin/manage-admin.php');
 
@@ -33,9 +31,9 @@ if ($res == TRUE) {
     // echo 'Failed to delete Admin ';
 
     //Create a Session Variable to Display Message
-    $_SESSION['delete'] = "<div class='error' >Failed to delete Admin </div>";
+    $_SESSION['delete-admin'] = "<div class='error' >Failed to delete Admin </div>";
     //Redirect Page to Manage Admin 
-    header("location:" . SITE_URL .'admin/add-admin.php');
+    header("location:" . SITE_URL .'admin/manage-admin.php');
 
 }
 

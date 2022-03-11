@@ -172,6 +172,23 @@ fieldset{
     color: #747d8c;
 }
 
+/*  css for session messages  */
+.success {
+    display: inline-block;
+    text-align: center;
+    background-color: #2ed573;
+    padding: 0.5% 1%;
+    
+   
+}
+
+.error {
+    display: inline-block;
+    text-align: center;
+    background-color: #ff4757;
+    padding: 0.5% 1%;
+ 
+}
 
 /* CSS for Social */
 .social ul{
@@ -199,6 +216,8 @@ fieldset{
     margin-bottom: 1%; 
     font-weight: bold;
 }
+
+
 
 
 
